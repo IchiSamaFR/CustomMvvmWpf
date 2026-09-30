@@ -5,7 +5,7 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<PackageType>Template</PackageType>
 		<PackageId>IchiSamaFR.CustomMvvmWpf.Templates</PackageId>
-		<PackageVersion>1.0.0</PackageVersion>
+		<PackageVersion>1.0.0</PackageVersion> 
 		<Title>WPF MVVM (WPF-UI + DI)</Title>
 		<Authors>IchiSamaFR</Authors>
 		<Description>Template de solution WPF MVVM (CommunityToolkit.Mvvm, WPF-UI, injection de dépendances).</Description>
