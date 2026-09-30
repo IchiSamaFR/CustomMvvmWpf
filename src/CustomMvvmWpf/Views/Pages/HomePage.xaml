@@ -1,0 +1,16 @@
+﻿<PageBase x:Class="CustomMvvmWpf.Views.Pages.HomePage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             xmlns:vm="clr-namespace:CustomMvvmWpf.ViewModels.Pages"
+             x:TypeArguments="vm:HomeVM"
+             Title="Requêtes"
+             d:DataContext="{d:DesignInstance vm:HomeVM}"
+             d:DesignHeight="720"
+             d:DesignWidth="1280"
+             mc:Ignorable="d">
+    <GridExtended Margin="24">
+    </GridExtended>
+</PageBase>

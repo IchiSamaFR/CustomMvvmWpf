@@ -1,0 +1,4 @@
+﻿<Solution>
+  <Project Path="CustomMvvmWpf.UI/CustomMvvmWpf.UI.csproj" Id="5cec967d-7606-4b6e-9147-09f992281230" />
+  <Project Path="CustomMvvmWpf/CustomMvvmWpf.csproj" />
+</Solution>

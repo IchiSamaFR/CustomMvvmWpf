@@ -1,0 +1,49 @@
+﻿<ui:FluentWindow x:Class="CustomMvvmWpf.Views.Windows.MainWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:vm="clr-namespace:CustomMvvmWpf.ViewModels.Windows"
+                 xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+                 Title="{Binding ApplicationTitle, Mode=OneWay}"
+                 Width="1280"
+                 Height="760"
+                 d:DataContext="{d:DesignInstance vm:MainWindowVM}"
+                 ExtendsContentIntoTitleBar="True"
+                 WindowBackdropType="Mica"
+                 WindowCornerPreference="Round"
+                 WindowStartupLocation="CenterScreen"
+                 mc:Ignorable="d">
+
+    <GridExtended Rows="Auto,*">
+        <ui:TitleBar Grid.Row="0"
+                     Title="{Binding ApplicationTitle, Mode=OneWay}"
+                     CloseWindowByDoubleClickOnIcon="True">
+            <ui:TitleBar.Icon>
+                <ui:SymbolIcon Symbol="Database24" />
+            </ui:TitleBar.Icon>
+        </ui:TitleBar>
+
+        <ui:NavigationView x:Name="RootNavigation"
+                           Grid.Row="1"
+                           IsBackButtonVisible="Collapsed"
+                           IsPaneOpen="False"
+                           IsPaneToggleVisible="False"
+                           MenuItemsSource="{Binding MenuItems, Mode=OneWay}"
+                           FooterMenuItemsSource="{Binding FooterMenuItems, Mode=OneWay}"
+                           PaneDisplayMode="Left"
+                           VerticalContentAlignment="Stretch"
+                           ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                           ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ui:NavigationView.ContentOverlay>
+                <Grid>
+                    <ui:SnackbarPresenter x:Name="SnackbarPresenter" />
+                </Grid>
+            </ui:NavigationView.ContentOverlay>
+        </ui:NavigationView>
+
+        <!--  Hôte des ContentDialog (IContentDialogService), superposé au contenu.  -->
+        <ContentPresenter x:Name="RootContentDialog"
+                          Grid.Row="1" />
+    </GridExtended>
+</ui:FluentWindow>

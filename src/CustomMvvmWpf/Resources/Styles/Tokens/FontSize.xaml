@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Petit texte : légendes, sous-titres discrets, aide -->
+    <system:Double x:Key="FontSizeSmall"
+                   xmlns:system="clr-namespace:System;assembly=mscorlib">11</system:Double>
+
+    <!-- Taille par défaut : corps de texte -->
+    <system:Double x:Key="FontSizeNormal"
+                   xmlns:system="clr-namespace:System;assembly=mscorlib">13</system:Double>
+
+    <!-- Sous-titres, labels importants -->
+    <system:Double x:Key="FontSizeMedium"
+                   xmlns:system="clr-namespace:System;assembly=mscorlib">16</system:Double>
+
+    <!-- Titres de section -->
+    <system:Double x:Key="FontSizeLarge"
+                   xmlns:system="clr-namespace:System;assembly=mscorlib">20</system:Double>
+
+    <!-- Titres principaux / en-têtes de page -->
+    <system:Double x:Key="FontSizeXLarge"
+                   xmlns:system="clr-namespace:System;assembly=mscorlib">28</system:Double>
+
+</ResourceDictionary>

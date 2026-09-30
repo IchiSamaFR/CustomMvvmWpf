@@ -1,0 +1,132 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- ===================== TabItem Style ===================== -->
+    <Style x:Key="ModernTabItemStyle"
+           TargetType="{x:Type TabItem}">
+        <Setter Property="Padding"
+                Value="16,8" />
+        <Setter Property="Margin"
+                Value="0,0,4,0" />
+        <Setter Property="Foreground"
+                Value="{DynamicResource BrushTextSecondary}" />
+        <Setter Property="FontSize"
+                Value="13" />
+        <Setter Property="Background"
+                Value="Transparent" />
+        <Setter Property="BorderThickness"
+                Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TabItem}">
+                    <Border x:Name="Border"
+                            Padding="{TemplateBinding Padding}"
+                            Margin="{TemplateBinding Margin}"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="6,6,0,0"
+                            SnapsToDevicePixels="True">
+                        <ContentPresenter x:Name="ContentSite"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          ContentSource="Header"
+                                          RecognizesAccessKey="True" />
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter TargetName="Border"
+                                    Property="Background"
+                                    Value="{DynamicResource BrushControlFillHover}" />
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource BrushTextPrimary}" />
+                        </Trigger>
+
+                        <Trigger Property="IsSelected"
+                                 Value="True">
+                            <Setter TargetName="Border"
+                                    Property="Background"
+                                    Value="{DynamicResource BrushBackgroundElevated}" />
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource BrushTextPrimary}" />
+                            <Setter Property="FontWeight"
+                                    Value="Bold" />
+                            <Setter Property="Panel.ZIndex"
+                                    Value="1" />
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled"
+                                 Value="False">
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource BrushTextDisabled}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- ===================== TabControl Style ===================== -->
+    <Style TargetType="{x:Type TabControl}">
+        <Setter Property="Background"
+                Value="{DynamicResource BrushBackgroundElevated}" />
+        <Setter Property="BorderBrush"
+                Value="{DynamicResource BrushBorderDefault}" />
+        <Setter Property="BorderThickness"
+                Value="1" />
+        <Setter Property="Padding"
+                Value="0" />
+        <Setter Property="ItemContainerStyle"
+                Value="{StaticResource ModernTabItemStyle}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TabControl}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="0,0,0,0"
+                            CornerRadius="6"
+                            SnapsToDevicePixels="True">
+                        <GridExtended KeyboardNavigation.TabNavigation="Local"
+                                      Rows="Auto,*">
+                            <!--  En-têtes des onglets  -->
+                            <Border Grid.Row="0"
+                                    Background="{DynamicResource BrushBackgroundApplication}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="0,0,0,0"
+                                    CornerRadius="6,6,0,0">
+                                <TabPanel x:Name="HeaderPanel"
+                                          Panel.ZIndex="1"
+                                          HorizontalAlignment="Left"
+                                          VerticalAlignment="Bottom"
+                                          IsItemsHost="True"
+                                          KeyboardNavigation.TabIndex="1" />
+                            </Border>
+
+                            <!--  Contenu de l'onglet sélectionné  -->
+                            <Border Grid.Row="1"
+                                    Padding="12"
+                                    Background="{DynamicResource BrushBackgroundElevated}"
+                                    CornerRadius="0,0,6,6">
+                                <ContentPresenter x:Name="PART_SelectedContentHost"
+                                                  Margin="0"
+                                                  ContentSource="SelectedContent"
+                                                  KeyboardNavigation.DirectionalNavigation="Contained"
+                                                  KeyboardNavigation.TabIndex="2"
+                                                  KeyboardNavigation.TabNavigation="Local" />
+                            </Border>
+                        </GridExtended>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled"
+                                 Value="False">
+                            <Setter Property="Opacity"
+                                    Value="0.6" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

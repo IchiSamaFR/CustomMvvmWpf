@@ -1,0 +1,103 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Resources/Styles/Tokens/FontSize.xaml" />
+        <ResourceDictionary Source="/Resources/Styles/Tokens/Color.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <!-- Style de base : commun à tous les TextBlock WPF UI -->
+    <Style x:Key="TextBlockBaseStyle"
+           TargetType="ui:TextBlock">
+        <Setter Property="FontFamily"
+                Value="Segoe UI" />
+        <Setter Property="Foreground"
+                Value="{StaticResource BrushTextPrimary}" />
+        <Setter Property="TextWrapping"
+                Value="Wrap" />
+    </Style>
+
+    <!-- Titre principal -->
+    <Style x:Key="TextBlockTitleStyle"
+           TargetType="ui:TextBlock"
+           BasedOn="{StaticResource TextBlockBaseStyle}">
+        <Setter Property="FontSize"
+                Value="{StaticResource FontSizeXLarge}" />
+        <Setter Property="FontWeight"
+                Value="SemiBold" />
+    </Style>
+
+    <!-- Titre de section -->
+    <Style x:Key="TextBlockHeadingStyle"
+           TargetType="ui:TextBlock"
+           BasedOn="{StaticResource TextBlockBaseStyle}">
+        <Setter Property="FontSize"
+                Value="{StaticResource FontSizeLarge}" />
+        <Setter Property="FontWeight"
+                Value="SemiBold" />
+    </Style>
+
+    <!-- Sous-titre / texte important -->
+    <Style x:Key="TextBlockSubtitleStyle"
+           TargetType="ui:TextBlock"
+           BasedOn="{StaticResource TextBlockBaseStyle}">
+        <Setter Property="FontSize"
+                Value="{StaticResource FontSizeMedium}" />
+        <Setter Property="FontWeight"
+                Value="Medium" />
+    </Style>
+
+    <!-- Texte courant (par défaut) -->
+    <Style x:Key="TextBlockDefaultStyle"
+           TargetType="ui:TextBlock"
+           BasedOn="{StaticResource TextBlockBaseStyle}">
+        <Setter Property="FontSize"
+                Value="{StaticResource FontSizeNormal}" />
+        <Setter Property="FontWeight"
+                Value="Normal" />
+    </Style>
+
+    <!-- Texte secondaire / atténué -->
+    <Style x:Key="TextBlockSecondaryStyle"
+           TargetType="ui:TextBlock"
+           BasedOn="{StaticResource TextBlockBaseStyle}">
+        <Setter Property="FontSize"
+                Value="{StaticResource FontSizeNormal}" />
+        <Setter Property="Foreground"
+                Value="{StaticResource BrushTextSecondary}" />
+    </Style>
+
+	<!-- Accentué -->
+	<Style x:Key="TextBlockAccentStyle"
+           TargetType="ui:TextBlock"
+           BasedOn="{StaticResource TextBlockBaseStyle}">
+		<Setter Property="Foreground"
+                Value="{StaticResource BrushTextAccent}" />
+	</Style>
+	
+    <!-- Légende / hint -->
+    <Style x:Key="TextBlockCaptionStyle"
+           TargetType="ui:TextBlock"
+           BasedOn="{StaticResource TextBlockBaseStyle}">
+        <Setter Property="FontSize"
+                Value="{StaticResource FontSizeSmall}" />
+        <Setter Property="Foreground"
+                Value="{StaticResource BrushTextTertiary}" />
+    </Style>
+
+    <!-- TextBlock désactivé -->
+    <Style x:Key="TextBlockDisabledStyle"
+           TargetType="ui:TextBlock"
+           BasedOn="{StaticResource TextBlockBaseStyle}">
+        <Setter Property="FontSize"
+                Value="{StaticResource FontSizeNormal}" />
+        <Setter Property="Foreground"
+                Value="{StaticResource BrushTextDisabled}" />
+    </Style>
+
+    <!-- Style par défaut implicite (sans x:Key), appliqué à tout ui:TextBlock -->
+    <Style TargetType="ui:TextBlock"
+           BasedOn="{StaticResource TextBlockDefaultStyle}" />
+
+</ResourceDictionary>
