@@ -14,7 +14,7 @@
   "guids": [ "5cec967d-7606-4b6e-9147-09f992281230" ],
   "sources": [
     {
-      "modifiers": [ { "exclude": [ "**/bin/**", "**/obj/**", "**/.vs/**", ".git/**", "**/*.user", ".template.config/**" ] } ]
+      "modifiers": [ { "exclude": [ "**/bin/**", "**/obj/**", "**/.vs/**", ".git/**", "**/*.user", ".template.config/**", "template/**", ".github/workflows/**" ] } ]
     }
   ]
 }

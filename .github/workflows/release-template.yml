@@ -1,0 +1,69 @@
+name: Release template
+
+# Publie le template à chaque push sur master dont le dernier commit commence par "Release".
+# Version : "Release 1.2.0 ..." -> 1.2.0 ; sinon 1.0.<numéro de run>.
+on:
+  push:
+    branches: [ master ]
+
+permissions:
+  contents: write   # création de la GitHub Release
+  packages: write   # publication sur GitHub Packages
+
+jobs:
+  release:
+    if: startsWith(github.event.head_commit.message, 'Release')
+    runs-on: windows-latest   # WPF ne compile que sous Windows
+    defaults:
+      run:
+        shell: pwsh
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            8.0.x
+            10.0.x
+
+      - name: Déterminer la version
+        id: version
+        env:
+          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+        run: |
+          if ($env:COMMIT_MESSAGE -match '^Release\s+v?(\d+\.\d+\.\d+(-[0-9A-Za-z.-]+)?)') {
+            $version = $Matches[1]
+          } else {
+            $version = "1.0.$env:GITHUB_RUN_NUMBER"
+          }
+          "version=$version" >> $env:GITHUB_OUTPUT
+          Write-Host "Version : $version"
+
+      - name: Packer le template
+        run: >
+          dotnet pack template/CustomMvvmWpf.Templates.csproj -c Release -o out
+          -p:PackageVersion=${{ steps.version.outputs.version }}
+          -p:RepositoryUrl=${{ github.server_url }}/${{ github.repository }}
+
+      - name: Tester le template (création + build)
+        run: |
+          dotnet new install (Get-ChildItem out/*.nupkg).FullName
+          dotnet new custommvvm -n TemplateCheck -o "$env:RUNNER_TEMP/TemplateCheck"
+          dotnet build (Get-ChildItem "$env:RUNNER_TEMP/TemplateCheck" -Recurse -Filter *.slnx | Select-Object -First 1).FullName -c Release
+
+      - name: Publier sur GitHub Packages
+        run: >
+          dotnet nuget push "out/*.nupkg"
+          --source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
+          --api-key ${{ secrets.GITHUB_TOKEN }}
+          --skip-duplicate
+
+      - name: Créer la GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: >
+          gh release create "v${{ steps.version.outputs.version }}" (Get-ChildItem out/*.nupkg).FullName
+          --title "v${{ steps.version.outputs.version }}"
+          --notes "Template IchiSamaFR.CustomMvvmWpf.Templates v${{ steps.version.outputs.version }}"
+          --target ${{ github.sha }}

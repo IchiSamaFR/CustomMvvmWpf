@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<!-- Projet de packaging uniquement : embarque le dépôt comme template dotnet new -->
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<PackageType>Template</PackageType>
+		<PackageId>IchiSamaFR.CustomMvvmWpf.Templates</PackageId>
+		<PackageVersion>1.0.0</PackageVersion>
+		<Title>WPF MVVM (WPF-UI + DI)</Title>
+		<Authors>IchiSamaFR</Authors>
+		<Description>Template de solution WPF MVVM (CommunityToolkit.Mvvm, WPF-UI, injection de dépendances).</Description>
+		<PackageTags>dotnet-new;templates;wpf;mvvm;wpf-ui</PackageTags>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+
+		<IncludeContentInPack>true</IncludeContentInPack>
+		<IncludeBuildOutput>false</IncludeBuildOutput>
+		<ContentTargetFolders>content</ContentTargetFolders>
+		<EnableDefaultItems>false</EnableDefaultItems>
+		<!-- Nécessaire pour embarquer .template.config, .gitignore, .github… -->
+		<NoDefaultExcludes>true</NoDefaultExcludes>
+		<NoWarn>$(NoWarn);NU5128;NU5110;NU5111</NoWarn>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Content Include="..\**\*"
+				 Exclude="..\.git\**;..\**\.vs\**;..\**\bin\**;..\**\obj\**;..\**\*.user;..\template\**;..\.github\workflows\**"
+				 PackagePath="content\CustomMvvmWpf" />
+		<Compile Remove="**\*" />
+	</ItemGroup>
+
+</Project>
