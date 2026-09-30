@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<!-- Projet de packaging uniquement : embarque le dépôt comme template dotnet new -->
 	<PropertyGroup>
